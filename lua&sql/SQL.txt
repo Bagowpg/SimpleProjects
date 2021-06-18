@@ -1,0 +1,55 @@
+CREATE TABLE players(
+    id MEDIUMINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    login VARCHAR(40) UNIQUE NOT NULL,
+    `password` VARCHAR(64) NOT NULL,
+    skin SMALLINT DEFAULT 0,
+    `level` SMALLINT DEFAULT 0,
+    money INT DEFAULT 0,
+    fraction SMALLINT DEFAULT 0);
+
+CREATE TABLE technical_info(
+    id MEDIUMINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    reg_serial CHAR(32),
+    last_serial CHAR(32),
+    all_serials TEXT,
+    reg_adress CHAR(15),
+    last_adress CHAR(15),
+    all_adresses TEXT,
+    player_id MEDIUMINT UNSIGNED,
+    FOREIGN KEY (player_id)  REFERENCES Players (id));
+
+CREATE TABLE transport(
+    id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    model_id SMALLINT UNSIGNED,
+    color INT UNSIGNED,
+    nitro TINYINT,
+    player_id MEDIUMINT UNSIGNED,
+	FOREIGN KEY (player_id)  REFERENCES Players (id));
+
+CREATE TABLE weapons(
+    id MEDIUMINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    slot3 SMALLINT,
+    ammo3 MEDIUMINT UNSIGNED,
+    slot4 SMALLINT,
+    ammo4 MEDIUMINT UNSIGNED,
+    slot5 SMALLINT,
+    ammo5 MEDIUMINT UNSIGNED,
+    slot6 SMALLINT,
+    ammo6 MEDIUMINT UNSIGNED,
+    slot7 SMALLINT,
+    ammo7 MEDIUMINT UNSIGNED,
+    player_id MEDIUMINT UNSIGNED,
+    FOREIGN KEY (player_id)  REFERENCES Players (id));
+
+CREATE TABLE skills(
+    id MEDIUMINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    Skill1 TINYINT DEFAULT 0,
+    Skill2 TINYINT DEFAULT 0,
+    Skill3 TINYINT DEFAULT 0,
+    Skill4 TINYINT DEFAULT 0,
+    Skill5 TINYINT DEFAULT 0,
+    Skill6 TINYINT DEFAULT 0,
+    Skill7 TINYINT DEFAULT 0,
+    Skill8 TINYINT DEFAULT 0,
+    player_id MEDIUMINT UNSIGNED,
+    FOREIGN KEY (player_id)  REFERENCES Players (id));
